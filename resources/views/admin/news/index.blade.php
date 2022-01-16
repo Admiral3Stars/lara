@@ -9,10 +9,7 @@
     </div>
 @endsection
 @section('content')
-    {{-- Не работают --}}
-    {{--
-    <x-alert type = "success" message = "The news has been added"></x-alert>
-    <x-alert type = "warning" message = "warning"></x-alert>
-    <x-alert type = "danger" message = "danger"></x-alert>
-    --}}
+    <x-alert type="success" message="All be good!"></x-alert>
+    <x-alert type="warning" message="Not all be good!"></x-alert>
+    <x-alert type="danger" message="All be bad!"></x-alert>
 @endsection
