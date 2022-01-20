@@ -11,7 +11,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    @stack('alt')
+    <link href="{{ asset('css/alt.css') }}" rel="stylesheet">
+{{--    @stack('alt')--}}
 
     <style>
         .bd-placeholder-img {

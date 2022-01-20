@@ -11,6 +11,7 @@
                     <ul class="list-unstyled">
                         <li><a href="/news" class="text-white">News</a></li>
                         <li><a href="/categories" class="text-white">Categories</a></li>
+                        <li><a href="/contacts" class="text-white">Contacts</a></li>
                         <li><a href="/login" class="text-white">login</a></li>
                     </ul>
                 </div>

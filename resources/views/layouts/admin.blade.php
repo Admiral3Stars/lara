@@ -30,6 +30,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/alt.css') }}" rel="stylesheet">
 </head>
 <body>
 
@@ -43,10 +44,7 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                @yield('header')
             </div>
-
-            <div class="table-responsive">
-                @yield('content')
-            </div>
+            @yield('content')
         </main>
     </div>
 </div>
