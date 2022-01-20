@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return "Admin hi!";
+        return view('admin.news.index');
     }
 
     /**
