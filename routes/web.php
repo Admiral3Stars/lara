@@ -3,9 +3,10 @@
 use App\Http\Controllers\NewsController as NewsController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
-use App\Http\Controllers\{HomeController, CategoryController, LkController};
+use App\Http\Controllers\{HomeController, CategoryController, ContactsController, LkController};
 
 Route::get('/', [HomeController::class, 'index']);
+Route::resource('contacts', ContactsController::class);
 Route::get('/login', [LkController::class, 'login']);
 
 //news routes

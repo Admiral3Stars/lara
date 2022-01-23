@@ -2,9 +2,9 @@
 @section('title')
     Login @parent
 @endsection
-@push('alt')
-    <link href="{{ asset('css/alt.css') }}" rel="stylesheet">
-@endpush
+{{--@push('alt')--}}
+{{--    <link href="{{ asset('css/alt.css') }}" rel="stylesheet">--}}
+{{--@endpush--}}
 @section('header')
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
