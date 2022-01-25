@@ -1,11 +1,11 @@
 @extends('layouts.main')
 @section('title')
-    New #{{ $newsItem['id'] }} @parent
+    New #{{ $news->id }} @parent
 @endsection
 @section('header')
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">This new have id {{ $newsItem['id'] }}</h1>
+            <h1 class="fw-light">This new have id {{ $news->id }}</h1>
         </div>
     </div>
 @endsection
@@ -17,11 +17,11 @@
 
                 <div class="card-body">
                     <div class="card-header">
-                        <strong>{{$newsItem['title']}}</strong>
+                        <strong>{{$news->title}}</strong>
                     </div>
-                    <p class="card-text">{!! $newsItem['description'] !!}</p>
+                    <p class="card-text">{!! $news->description !!}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">Autor: {{$newsItem['autor']}}</small>
+                        <small class="text-muted">Autor: {{$news->author}}</small>
                         <small class="text-muted">{{ Now('Europe/Moscow') }}</small>
                     </div>
                 </div>

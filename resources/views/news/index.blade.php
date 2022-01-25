@@ -11,7 +11,7 @@
 @endsection
 @section('content')
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        @forelse ($news as $newsItem)
+        @forelse ($newsList as $news)
             {{--@if($loop->last)
                 <h1>Последняя итерация</h1>
             @endif--}}
@@ -21,16 +21,16 @@
 
                     <div class="card-body">
                         <div class="card-header">
-                            <strong><a href="{{ route('news.show', ['id' => $newsItem['id']]) }}">{{$newsItem['title']}}</a></strong>
+                            <strong><a href="{{ route('news.show', ['id' => $news->id]) }}">{{$news->title}}</a></strong>
                         </div>
-                        <p class="card-text">{!! $newsItem['description'] !!}</p>
+                        <p class="card-text">{!! $news->description !!}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="{{ route('news.show', ['id' => $newsItem['id']]) }}">
+                                <a href="{{ route('news.show', ['id' => $news->id]) }}">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">See more</button>
                                 </a>
                             </div>
-                            <small class="text-muted">Autor: {{$newsItem['autor']}}</small>
+                            <small class="text-muted">Autor: {{$news->author}}</small>
                             <small class="text-muted">{{ Now('Europe/Moscow') }}</small>
                         </div>
                     </div>

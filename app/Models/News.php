@@ -13,12 +13,16 @@ class News extends Model
 
     public function getNews(): array
     {
-        return \DB::select("SELECT `id`, `title`, `slug`, `author`, `description` FROM `{$this->table}`");
+        //return \DB::select("SELECT `id`, `title`, `slug`, `author`, `status`, `description` FROM `{$this->table}`");
+        return \DB::table($this->table)
+            ->select(['id', 'title', 'slug', 'author', 'status', 'description'])
+            ->get()
+            ->toArray();
     }
 
     public function getNewsById(int $id)
     {
-        return \DB::select("SELECT `id`, `title`, `slug`, `author`, `description` FROM `{$this->table}`
+        return \DB::select("SELECT `id`, `title`, `slug`, `author`, `status`, `description` FROM `{$this->table}`
                             WHERE `id` = :id", ['id' => $id]);
     }
 }
