@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Models\{Category,News,User};
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = $this->getCategory();
+        $model = new Category();
+        $categories = $model->getCategory();
 
-        return view('categories.index', [
-            'categories' => $categories
-        ]);
-
-
+        return view('categories.index', ['categories' => $categories]);
     }
 
     public function show(int $id)
@@ -22,9 +21,9 @@ class CategoryController extends Controller
         if ($id > 10) {
             abort(404);
         }
-        $categoriesItem = $this->getCategoryById($id);
+        $model = new Category();
         return view('categories.show', [
-            'categoriesItem' => $categoriesItem
+            'category' => $model->getCategoryById($id)[0]
         ]);
     }
 }

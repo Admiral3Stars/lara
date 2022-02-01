@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Models\{Category,News,User};
 
 class NewsController extends Controller
 {
 
     public function index()
     {
-        $news = $this->getNews();
+        $model = new News();
+        $news = $model->getNews();
 
         return view('news.index', [
-            'news' => $news
+            'newsList' => $news
         ]);
 
 
@@ -23,9 +26,9 @@ class NewsController extends Controller
         if ($id > 10) {
             abort(404);
         }
-        $newsItem = $this->getNewsById($id);
+        $model = new News();
         return view('news.show', [
-            'newsItem' => $newsItem
+            'news' => $model->getNewsById($id)[0]
         ]);
     }
 }
