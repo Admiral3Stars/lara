@@ -10,6 +10,32 @@
 @endsection
 @section('content')
     <div class="table-responsive">
-
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>count</th>
+                <th>Header</th>
+                <th>Description</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            @forelse($categories as $category)
+                <tr>
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->news()->count() }}</td>
+                    <td>{{ $category->title }}</td>
+                    <td>{{ $category->description }}</td>
+                    <td><a href="{{ route('admin.categories.edit', ['category' => $category]) }}">Update</a> | <a href="javascript:;">Delete</a></td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6">Нет записей</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
+        {{ $categories->links() }}
     </div>
 @endsection

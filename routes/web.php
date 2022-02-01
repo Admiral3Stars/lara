@@ -13,7 +13,7 @@ Route::get('/login', [LkController::class, 'login']);
 Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
 Route::get('/news/{id}', [NewsController::class, 'show'])
-    ->where('id', '\d+')
+    ->where('news', '\d+')
     ->name('news.show');
 
 //categories routes
@@ -28,4 +28,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
     Route::view('/', 'admin.index')->name('index');
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('news', AdminNewsController::class);
+});
+
+Route::get('/collection', function(){
+    $array = ['Anna', 'Viktor', 'Alexey', 'dima', 'Ira', 'VaSya', 'olya'];
+    $collection = collect($array);
+    dd($collection->map(function($item){
+        return mb_strtoupper($item);
+    })->sort());
 });

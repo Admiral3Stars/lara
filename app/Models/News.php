@@ -3,26 +3,41 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class News extends Model
 {
     use HasFactory;
 
     protected $table = 'news';
+    protected $fillable = [
+        'category_id',
+        'title',
+        'slug',
+        'author',
+        'status',
+        'description'
+    ];
 
-    public function getNews(): array
+    public static $availableFields = [
+        'id', 'title', 'author', 'status', 'description', 'created_at'
+    ];
+
+    protected $casts = [
+        'display' => 'Boolean'
+    ];
+
+    public function category(): BelongsTo
     {
-        //return \DB::select("SELECT `id`, `title`, `slug`, `author`, `status`, `description` FROM `{$this->table}`");
-        return \DB::table($this->table)
-            ->select(['id', 'title', 'slug', 'author', 'status', 'description'])
-            ->get()
-            ->toArray();
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function getNewsById(int $id)
-    {
-        return \DB::select("SELECT `id`, `title`, `slug`, `author`, `status`, `description` FROM `{$this->table}`
-                            WHERE `id` = :id", ['id' => $id]);
-    }
+//    public function getTitleAttribute($value)
+//    {
+//        return mb_strtoupper($value);
+//    }
+
+
 }
