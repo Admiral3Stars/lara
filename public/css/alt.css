@@ -6,3 +6,8 @@
     margin-top: 20px;
     float:right;
 }
+
+.error-text{
+    font-weight: 600;
+    color: red;
+}

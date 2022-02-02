@@ -8,22 +8,30 @@
     </div>
 @endsection
 @section('content')
-    @if($errors->any())
-        @foreach($errors->all() as $error)
-            <x-alert type="danger" :message="$error"></x-alert>
-        @endforeach
-    @endif
+    @include('inc.message')
     <div>
         <form action="{{ route('admin.news.update', ['news' => $news]) }}" method="POST">
             @csrf
             @method('put')
             <div class="form-group">
+                <label for="category_id">Category id</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"
+                        @if($category->id === $news->category_id) selected @endif>{{ $category->title }}</option>
+                    @endforeach
+                </select>
+                @error('category_id') <span class="error-text">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
                 <label for="title">News name</label>
                 <input id="title" class="form-control" type="text" name="title" value="{{ $news->title }}">
+                @error('title') <span class="error-text">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="author">Author name</label>
                 <input id="author" class="form-control" type="text" name="author" value="{{ $news->author }}">
+                @error('author') <span class="error-text">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
