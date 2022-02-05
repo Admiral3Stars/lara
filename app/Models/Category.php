@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\CategoryFactory;
+use Database\Factories\NewsFactory;
 
 class Category extends Model
 {
