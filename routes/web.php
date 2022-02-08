@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController as NewsController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\{HomeController, CategoryController, ContactsController, LkController};
 
@@ -24,10 +25,19 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])
     ->name('categories.show');
 
 //admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
-    Route::view('/', 'admin.index')->name('index');
-    Route::resource('categories', AdminCategoryController::class);
-    Route::resource('news', AdminNewsController::class);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/account', AccountController::class)
+        ->name('account');
+    Route::get('/account/logout', function(){
+        \Auth::logout();
+        return redirect()->route('login');
+    })->name('account.logout');
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
+        Route::view('/', 'admin.index')->name('index');
+        Route::resource('categories', AdminCategoryController::class);
+        Route::resource('news', AdminNewsController::class);
+    });
 });
 
 Route::get('/collection', function(){
@@ -37,3 +47,19 @@ Route::get('/collection', function(){
         return mb_strtoupper($item);
     })->sort());
 });
+
+Route::get('/session', function() {
+    if(session()->has('title')) {
+        //dd(session()->all(), session()->get('title'));
+        session()->forget('title');
+    }
+    session(['title' => 'name']);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
