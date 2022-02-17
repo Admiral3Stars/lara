@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\{HomeController, CategoryController, ContactsController, LkController};
+use App\Http\Controllers\Admin\ParserController as ParserController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::resource('contacts', ContactsController::class);
@@ -34,7 +35,10 @@ Route::group(['middleware' => 'auth'], function() {
     })->name('account.logout');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
-        Route::view('/', 'admin.index')->name('index');
+        Route::get('parser', ParserController::class)
+            ->name('parser');
+        Route::view('/', 'admin.index')
+            ->name('index');
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
     });
