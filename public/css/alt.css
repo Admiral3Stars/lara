@@ -1,3 +1,6 @@
+a{
+    text-decoration: none;
+}
 .loginform{
     display: flex;
     justify-content: center;
@@ -5,4 +8,17 @@
 .btn-right{
     margin-top: 20px;
     float:right;
+}
+
+.error-text{
+    font-weight: 600;
+    color: red;
+}
+
+.red-link, .red-link:active{
+    color:red;
+}
+
+.red-link:hover{
+    color:darkred;
 }

@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\{Category,News,User};
+use App\Models\News;
 
 class NewsController extends Controller
 {
 
     public function index()
     {
-        $model = new News();
-        $news = $model->getNews();
+        $news = News::query()->select(News::$availableFields)->get();
 
         return view('news.index', [
             'newsList' => $news
@@ -21,14 +20,10 @@ class NewsController extends Controller
 
     }
 
-    public function show(int $id)
+    public function show(News $id)
     {
-        if ($id > 10) {
-            abort(404);
-        }
-        $model = new News();
         return view('news.show', [
-            'news' => $model->getNewsById($id)[0]
+            'news' => $id
         ]);
     }
 }
